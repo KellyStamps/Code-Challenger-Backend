@@ -1,3 +1,18 @@
 class Api::V1::ChallengesController < ApplicationController
 
-end 
+  def new
+  end
+
+  def create
+  end
+
+  def show
+  end
+
+  def index
+  end
+
+  def destroy
+  end
+
+end
