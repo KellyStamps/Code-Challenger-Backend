@@ -10,6 +10,8 @@ class Api::V1::ChallengesController < ApplicationController
   end
 
   def index
+    challenges = Challenge.all
+    render json: {challenges: challenges}
   end
 
   def destroy
