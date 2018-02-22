@@ -1,18 +1,28 @@
 class Api::V1::UsersController < ApplicationController
 
   def create
-    user = User.new(username: params[:username], password: params[:password])
+    user = User.find_by(username: params[:username])
 
-    if user.save
+    if user
       render json: {
         username: user.username,
         cake_day: user.created_at,
         id: user.id
       }
     else
-      render json: {
-        error: 'Something went horribly wrong'
-      }
+      new_user = User.new(username: params[:username], password: params[:password])
+
+      if new_user.save
+        render json: {
+          username: user.username,
+          cake_day: user.created_at,
+          id: user.id
+        }
+      else
+        render json: {
+          error: 'Something went horribly wrong'
+        }
+      end 
     end
   end
 
@@ -23,7 +33,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     users = User.all
     render json: {
-      users: users 
+      users: users
     }
   end
 

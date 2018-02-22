@@ -7,6 +7,8 @@ class Api::V1::ChallengesController < ApplicationController
   end
 
   def show
+    challenge = Challenge.find(params[:id])
+    render json: {challenge: challenge}
   end
 
   def index
