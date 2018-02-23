@@ -7,7 +7,8 @@ class Api::V1::UsersController < ApplicationController
       render json: {
         username: user.username,
         cake_day: user.created_at,
-        id: user.id
+        id: user.id,
+        bio: user.bio
       }
     else
       new_user = User.new(username: params[:username], password: params[:password])
@@ -16,13 +17,14 @@ class Api::V1::UsersController < ApplicationController
         render json: {
           username: user.username,
           cake_day: user.created_at,
-          id: user.id
+          id: user.id,
+          bio: user.bio
         }
       else
         render json: {
           error: 'Something went horribly wrong'
         }
-      end 
+      end
     end
   end
 
