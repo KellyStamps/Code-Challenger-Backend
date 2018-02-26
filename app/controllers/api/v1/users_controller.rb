@@ -6,12 +6,12 @@ class Api::V1::UsersController < ApplicationController
     if user
       render json: {
         username: user.username,
-        cake_day: user.created_at,
+        cake_day: user.created_at.strftime('%A, %B %d, %Y'),
         id: user.id,
         bio: user.bio
       }
     else
-      new_user = User.new(username: params[:username], password: params[:password])
+      new_user = User.new(user_params)
 
       if new_user.save
         render json: {
@@ -44,5 +44,11 @@ class Api::V1::UsersController < ApplicationController
 
   def update
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:username, :password, :bio)
+    end
 
 end
