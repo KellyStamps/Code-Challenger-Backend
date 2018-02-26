@@ -4,11 +4,13 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
+      favorites = UserChallenge.select{|challenge| challenge.user_id == user.id}
       render json: {
         username: user.username,
         cake_day: user.created_at.strftime('%A, %B %d, %Y'),
         id: user.id,
-        bio: user.bio
+        bio: user.bio,
+        favorites: favorites
       }
     else
       new_user = User.new(user_params)
