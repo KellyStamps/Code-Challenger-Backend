@@ -14,7 +14,6 @@ class Api::V1::UsersController < ApplicationController
       }
     else
       user = User.new(username: params[:username], password: params[:password])
-
       if user.save
         render json: {
           username: user.username,
@@ -45,6 +44,15 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    user = User.find(params[:id])
+    if !params[:bio].empty?
+      user.bio = params[:bio]
+    end
+    if !params[:username].empty?
+      user.username = params[:username]
+    end
+    user.save
+    render json: {user: user}
   end
 
   # private
