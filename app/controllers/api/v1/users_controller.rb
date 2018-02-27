@@ -13,9 +13,9 @@ class Api::V1::UsersController < ApplicationController
         favorites: favorites
       }
     else
-      new_user = User.new(user_params)
+      user = User.new(username: params[:username], password: params[:password])
 
-      if new_user.save
+      if user.save
         render json: {
           username: user.username,
           cake_day: user.created_at,
@@ -47,10 +47,10 @@ class Api::V1::UsersController < ApplicationController
   def update
   end
 
-  private
-
-    def user_params
-      params.require(:user).permit(:username, :password, :bio)
-    end
+  # private
+  #
+  #   def user_params
+  #     params.require(:user).permit(:username, :password)
+  #   end
 
 end

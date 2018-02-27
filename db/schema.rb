@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180221163637) do
 
   create_table "challenges", force: :cascade do |t|
     t.string "content"
-    t.string "rating"
+    t.integer "rating"
     t.string "links"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

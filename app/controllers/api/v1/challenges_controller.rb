@@ -1,8 +1,5 @@
 class Api::V1::ChallengesController < ApplicationController
 
-  def new
-  end
-
   def create
   end
 
@@ -14,6 +11,13 @@ class Api::V1::ChallengesController < ApplicationController
   def index
     challenges = Challenge.all
     render json: {challenges: challenges}
+  end
+
+  def update
+    challenge = Challenge.find(params[:id])
+    challenge.rating = params[:rating]
+    challenge.save
+    render json: {rating: challenge.rating}
   end
 
   def destroy
