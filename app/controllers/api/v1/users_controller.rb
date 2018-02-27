@@ -4,7 +4,8 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
-      favorites = UserChallenge.select{|challenge| challenge.user_id == user.id}
+      favorites = user.user_challenges.map { |c| {challenge: c.challenge, completed: c.completed}}
+
       render json: {
         username: user.username,
         cake_day: user.created_at.strftime('%A, %B %d, %Y'),
@@ -19,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
           username: user.username,
           cake_day: user.created_at,
           id: user.id,
-          bio: user.bio
+          bio: user.bio,
         }
       else
         render json: {
@@ -46,12 +47,11 @@ class Api::V1::UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     if !params[:bio].empty?
-      user.bio = params[:bio]
+      user.update(bio: params[:bio])
     end
     if !params[:username].empty?
-      user.username = params[:username]
+      user.update(username: params[:username])
     end
-    user.save
     render json: {user: user}
   end
 

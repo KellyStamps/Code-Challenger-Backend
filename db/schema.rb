@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180221163637) do
 
   create_table "challenges", force: :cascade do |t|
     t.string "content"
-    t.integer "rating"
+    t.string "rating"
     t.string "links"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180221163637) do
   create_table "user_challenges", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "challenge_id"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.string "git_link"
     t.string "live_link"
     t.datetime "created_at", null: false
