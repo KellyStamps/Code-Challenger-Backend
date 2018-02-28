@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
-      favorites = user.user_challenges.map { |c| {challenge: c.challenge, completed: c.completed, git_link: c.git_link}}
+      favorites = user.user_challenges.map { |c| {id: c.id, challenge: c.challenge, completed: c.completed, git_link: c.git_link}}
 
       render json: {
         username: user.username,

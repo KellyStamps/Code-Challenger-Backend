@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:new, :create, :show, :index, :update]
       resources :challenges, only: [:new, :create, :show, :index, :destroy, :update]
-      resources :user_challenges, only: [:new, :create, :destroy]
+      resources :user_challenges, only: [:new, :create, :destroy, :update]
       resources :friendships, only: [:new, :create, :destroy]
     end
   end

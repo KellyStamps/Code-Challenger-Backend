@@ -16,6 +16,12 @@ class Api::V1::UserChallengesController < ApplicationController
     end
   end
 
+  def update
+    challenge = UserChallenge.find(params[:id])
+    challenge.update(git_link: params[:git_link], live_link: params[:live_link], completed: true)
+    render json: {challenge: challenge}
+  end
+
   def destroy
   end
 
