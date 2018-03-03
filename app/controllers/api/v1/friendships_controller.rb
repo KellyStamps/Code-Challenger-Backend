@@ -4,6 +4,7 @@ class Api::V1::FriendshipsController < ApplicationController
     if params.include?(:friend_id)
       Friendship.create_reciprocal_for_ids(params[:user_id], params[:friend_id])
     end
+    render json: {friendship: Friendship.last}
   end
 
   def destroy
