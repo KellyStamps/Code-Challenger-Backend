@@ -5,13 +5,15 @@ class Api::V1::UsersController < ApplicationController
 
     if user
       favorites = user.user_challenges.map { |c| {id: c.id, challenge: c.challenge, completed: c.completed, git_link: c.git_link, live_link: c.live_link}}
+      friends = user.friends
 
       render json: {
         username: user.username,
         cake_day: user.created_at.strftime('%A, %B %d, %Y'),
         id: user.id,
         bio: user.bio,
-        favorites: favorites
+        favorites: favorites,
+        friends: friends
       }
     else
       user = User.new(username: params[:username], password: params[:password])
