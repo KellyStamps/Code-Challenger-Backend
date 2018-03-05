@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
 
     if user
       favorites = user.user_challenges.map { |c| {id: c.id, challenge: c.challenge, completed: c.completed, git_link: c.git_link, live_link: c.live_link}}
-      friends = user.friends
+      friends = user.friendships.map {|fr| {id: fr.id, friend: fr.friend}}
 
       render json: {
         username: user.username,
@@ -23,6 +23,8 @@ class Api::V1::UsersController < ApplicationController
           cake_day: user.created_at,
           id: user.id,
           bio: user.bio,
+          favorites: [],
+          friends: []
         }
       else
         render json: {
