@@ -1,6 +1,13 @@
 class Api::V1::ChallengesController < ApplicationController
 
   def create
+    challenge = Challenge.new(content: params[:content], links: params[:links], rating: 10)
+
+    if challenge.save
+      render json: {challenge: challenge}
+    else
+      render json: {message: "Error!"}
+    end
   end
 
   def show
