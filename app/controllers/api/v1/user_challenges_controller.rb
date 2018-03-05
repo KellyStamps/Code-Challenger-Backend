@@ -23,6 +23,8 @@ class Api::V1::UserChallengesController < ApplicationController
   end
 
   def destroy
+    UserChallenge.find(params[:id]).destroy
+    render json: {id: params[:id]}
   end
 
   private
