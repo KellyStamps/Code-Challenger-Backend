@@ -17,12 +17,15 @@ class Api::V1::ChallengesController < ApplicationController
 
   def index
     challenges = Challenge.all
+
+    lazy_links = UserChallenge.all.select{ |uc| uc.completed === true }.map{ |c| {id: c.challenge.id, git_link: c.git_link, live_link: c.live_link, user: c.user}}
+
     users = User.all
     allUsers = users.map { |user|
       projects = user.user_challenges.map { |uc| {id: uc.id, title: uc.challenge.content, project: uc}  }
       {user: user, projects: projects}
     }
-    render json: {challenges: challenges, allUsers: allUsers}
+    render json: {challenges: challenges, allUsers: allUsers, lazy_links: lazy_links}
   end
 
   def update
