@@ -19,7 +19,7 @@ class Api::V1::ChallengesController < ApplicationController
     challenges = Challenge.all
     users = User.all
     allUsers = users.map { |user|
-      projects = user.user_challenges.map { |uc| {id: uc.challenge.id, title: uc.challenge.content, project: uc}  }
+      projects = user.user_challenges.map { |uc| {id: uc.id, title: uc.challenge.content, project: uc}  }
       {user: user, projects: projects}
     }
     render json: {challenges: challenges, allUsers: allUsers}

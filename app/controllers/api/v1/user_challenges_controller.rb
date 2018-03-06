@@ -5,8 +5,9 @@ class Api::V1::UserChallengesController < ApplicationController
 
     if new_user_challenge.save
       render json: {
+        id: new_user_challenge.id,
         user_id: new_user_challenge.user_id,
-        challenge_id: new_user_challenge.challenge_id,
+        challenge: new_user_challenge.challenge,
         created_at: new_user_challenge.created_at.strftime('%A, %B %d, %Y')
       }
     else
