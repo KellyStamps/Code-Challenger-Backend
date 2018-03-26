@@ -5,7 +5,8 @@ Provides inspiration for coding projects to build your skillset and create a por
 Final project for the Flatiron School. This repo contains the back end of the app only. Be sure to visit this repo for the front end: https://github.com/KellyStamps/final-project-frontend.
 
 # Demo
-You can find a working demo here: https://www.youtube.com/edit?o=U&video_id=pus0LMkY-4U
+<a href="https://www.youtube.com/watch?v=pus0LMkY-4U" target="_blank"><img src="http://img.youtube.com/vi/pus0LMkY-4U/0.jpg" 
+alt="Code Challenger Thumbnail" width="240" height="180" border="10" /></a>
 
 # Features
 Create and save information through your user account, make friends, create and save coding project ideas. This project is was created with Rails and PostgreSQL.
