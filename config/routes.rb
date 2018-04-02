@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :challenges, only: [:new, :create, :show, :index, :destroy, :update]
       resources :user_challenges, only: [:new, :create, :destroy, :update]
       resources :friendships, only: [:new, :create, :destroy]
+      post '/auth', to: 'auth#create'
+      get 'current_user', to: 'auth#show'
     end
   end
 
